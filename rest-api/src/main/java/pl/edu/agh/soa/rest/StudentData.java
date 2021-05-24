@@ -1,16 +1,15 @@
-package pl.edu.agh.soa.lab;
+package pl.edu.agh.soa.rest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import io.swagger.annotations.*;
+import pl.edu.agh.soa.model.Student;
 
 @Path("/StudentData/")
 @Api(value = "Students API")
 public class StudentData {
-    private static final List<Student> students = new ArrayList<>();
+    private static final List<Student> students = new Student().generate();
 
     @GET
     @Path("/{index}")
@@ -40,7 +39,7 @@ public class StudentData {
             @ApiResponse(code = 404, message = "No students found")
     })
     public Response getStudents() {
-        students.add(new Student("123", 123, Collections.singletonList("ss")));
+//        students.add(new Student("123", 123, Collections.singletonList("ss")));
         if (students.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -81,11 +80,11 @@ public class StudentData {
             @ApiParam(required = true) @PathParam("index") int index,
             @ApiParam(required = true, name = "New Student") Student student
     ) {
-        if (student.index == index) {
+        if (student.getIndex() == index) {
             for (Student x: students) {
-                if (index == (x.index)) {
-                    x.subjects = student.subjects;
-                    x.name = student.name;
+                if (index == (x.getIndex())) {
+                    x.setSubjects(student.getSubjects());
+                    x.setName(student.getName());
                     return Response.status(Response.Status.ACCEPTED).build();
                 }
             }
@@ -101,8 +100,7 @@ public class StudentData {
             @ApiResponse(code = 404, message = "Student not found")
     })
     public Response deleteStudent(@ApiParam(required = true) @PathParam("index") int index) {
-        students.removeIf(x -> index == (x.index));
-
+        students.removeIf(x -> index == (x.getIndex()));
 
         return Response.status(Response.Status.OK).build();
     }

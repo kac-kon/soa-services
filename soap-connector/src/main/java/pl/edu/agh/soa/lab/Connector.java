@@ -54,8 +54,8 @@ public class Connector {
         String path1 = "F:\\AGH\\Sem_6\\SOA\\test\\jp2.png";
         String path2 = "F:\\AGH\\Sem_6\\SOA\\test\\jp1.png";
 
-//        Student s1 = new Student("Nowy Student", 123456, List.of("SOA", "IO"));
-//        addStudent(s1);
+        Student s1 = new Student("Nowy Student", 123456, List.of("SOA", "IO"));
+        addStudent(s1);
 //        getImage(path1, path2);
 //        printAll();
         printByIndex(123456);

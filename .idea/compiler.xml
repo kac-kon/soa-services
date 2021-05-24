@@ -7,12 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="rest-api" />
+        <module name="rest-connector" />
+        <module name="lab1-example-ear" />
         <module name="soap-connector" />
         <module name="soap-api" />
-        <module name="lab2-ear" />
-        <module name="rest-connector" />
-        <module name="lab2-model" />
+        <module name="model" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lab1-example-ejb (2)" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

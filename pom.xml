@@ -20,7 +20,7 @@
     <name>lab1-example</name>
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.edu.agh.soa.lab</groupId>
-    <artifactId>lab2</artifactId>
+    <artifactId>lab1-example</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
 
@@ -35,10 +35,10 @@
     <modules>
         <module>soap-api</module>
         <module>rest-api</module>
-        <module>lab2-ear</module>
+        <module>lab1-example-ear</module>
         <module>soap-connector</module>
-        <module>lab2-model</module>
         <module>rest-connector</module>
+        <module>model</module>
     </modules>
 
     <properties>
@@ -76,7 +76,7 @@
                 to repeat ourselves in every module -->
             <dependency>
                 <groupId>pl.edu.agh.soa.lab</groupId>
-                <artifactId>soap-api</artifactId>
+                <artifactId>lab1-example-ejb</artifactId>
                 <version>${project.version}</version>
                 <type>ejb</type>
             </dependency>
@@ -85,7 +85,7 @@
                 ourselves in every module -->
             <dependency>
                 <groupId>pl.edu.agh.soa.lab</groupId>
-                <artifactId>rest-api</artifactId>
+                <artifactId>lab1-example-web</artifactId>
                 <version>${project.version}</version>
                 <type>war</type>
                 <scope>compile</scope>

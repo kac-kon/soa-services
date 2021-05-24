@@ -1,8 +1,8 @@
-package pl.edu.agh.soa.lab;
+package pl.edu.agh.soa.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @ApplicationPath("/")
-public class RESTApplication extends Application {
+public class App extends Application {
 }

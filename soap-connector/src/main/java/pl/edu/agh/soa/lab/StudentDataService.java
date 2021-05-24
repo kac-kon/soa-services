@@ -15,7 +15,7 @@ import javax.xml.ws.Service;
  *
  */
 @WebServiceClient(name = "StudentDataService",
-                  wsdlLocation = "http://localhost:8080/lab1-example-ejb/StudentData?wsdl",
+                  wsdlLocation = "http://localhost:8080/soap-api/StudentData?wsdl",
                   targetNamespace = "http://lab.soa.agh.edu.pl/")
 public class StudentDataService extends Service {
 
@@ -26,11 +26,11 @@ public class StudentDataService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("http://localhost:8080/lab1-example-ejb/StudentData?wsdl");
+            url = new URL("http://localhost:8080/soap-api/StudentData?wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(StudentDataService.class.getName())
                 .log(java.util.logging.Level.INFO,
-                     "Can not initialize the default wsdl from {0}", "http://localhost:8080/lab1-example-ejb/StudentData?wsdl");
+                     "Can not initialize the default wsdl from {0}", "http://localhost:8080/soap-api/StudentData?wsdl");
         }
         WSDL_LOCATION = url;
     }

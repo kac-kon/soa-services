@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
 import org.jboss.ws.api.annotation.WebContext;
+import pl.edu.agh.soa.model.Student;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,7 +33,7 @@ public class StudentData {
     public Student Find(@WebParam(name = "index") Integer number){
 
         for (Student x: students){
-            if (number.equals(x.index)){
+            if (number.equals(x.getIndex())){
                 return x;
             }
         }
@@ -59,7 +60,7 @@ public class StudentData {
     @WebMethod
     @RolesAllowed("supervisor")
     public void Delete(@WebParam(name = "index") Integer number){
-        students.removeIf(x -> number.equals(x.index));
+        students.removeIf(x -> number.equals(x.getIndex()));
     }
 
     @WebMethod

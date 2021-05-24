@@ -4,15 +4,19 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="ejb" url="file://$PROJECT_DIR$/soap-api" />
     <file type="ejb" url="file://$PROJECT_DIR$/soap-connector1" />
-    <file type="javaeeApplication" url="file://$PROJECT_DIR$/lab2-ear" />
+    <file type="javaeeApplication" url="file://$PROJECT_DIR$/lab1-example-ear" />
     <file type="web" url="file://$PROJECT_DIR$/rest-api" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../SP/materialy/projekt-1-LTL/LogicalSpecification/soap-connector/pom.xml" />
       </list>
     </option>
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/soap-connector/pom.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="adopt-openjdk-11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

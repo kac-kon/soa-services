@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>lab2</artifactId>
+        <artifactId>lab1-example</artifactId>
         <groupId>pl.edu.agh.soa.lab</groupId>
         <version>1.0</version>
     </parent>
@@ -45,19 +45,13 @@
         <dependency>
             <groupId>pl.edu.agh.soa.lab</groupId>
             <artifactId>rest-api</artifactId>
+            <version>1.0</version>
             <type>war</type>
         </dependency>
-
-        <dependency>
-            <groupId>pl.edu.agh.soa.lab</groupId>
-            <artifactId>lab2-model</artifactId>
-            <version>1.0</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>pl.edu.agh.soa.lab</groupId>
             <artifactId>soap-api</artifactId>
+            <version>1.0</version>
             <type>ejb</type>
 
             <!-- Java11 - dodana sekcja ze względu na błąd w build EAR - konflikt w zależnościach -->

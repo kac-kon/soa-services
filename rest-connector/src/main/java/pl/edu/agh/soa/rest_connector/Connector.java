@@ -1,4 +1,5 @@
-package pl.edu.agh.soa.lab;
+package pl.edu.agh.soa.rest_connector;
+
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class Connector {
     private static ResteasyClient client = new ResteasyClientBuilder().build();
-    private static String url = "http://localhost:8080/rest-api/StudentData";
+    private static String url = "http://localhost:8080/rest-api/StudentData/";
 
     private static List<Student> getAllStudents(){
         List<Student> result = null;
@@ -48,17 +49,48 @@ public class Connector {
         ResteasyWebTarget target = client.target(url);
         Response response = target.request().post(Entity.entity(student, "application/json"));
         if (response.getStatus() != 201) {
+        System.out.println(response.getStatus());
+        }
+    }
+
+    private static void delStudent(Integer index){
+        ResteasyWebTarget target = client.target(url + "/" + index);
+        Response response = target.request().delete();
+        if (response.getStatus() != 200) {
+            System.out.println(response.getStatus());
+        }
+    }
+
+    private static void updateStudent(Integer index, Student student){
+        ResteasyWebTarget target = client.target(url + "/" + index);
+        Response response = target.request().put(Entity.entity(student, "application/json"));
+        if (response.getStatus() != 202) {
             System.out.println(response.getStatus());
         }
     }
 
 
     public static void main(String[] args){
-        List<Student> list = getAllStudents();
-        Student st = getStudentByIndex(123);
-        Student s = new Student("111", 111, Collections.singletonList("sdsa"));
+//        List<Student> list = getAllStudents();
+//        Student st = getStudentByIndex(123);
+//        Student s = new Student("111", 111, Collections.singletonList("sdsa"));
 //        System.out.println(st);
-        addStudent(s);
+//        addStudent(s);
+//        System.out.println(getStudentByIndex(111));
+//        Student s = new Student("111", 111, Collections.singletonList("sdsa"));
+//        addStudent(s);
+//        Student sa = new Student("James", 123, Collections.singletonList("sdsa"));
+//        addStudent(sa);
+        Student sb = new Student("Bond", 518, List.of("sdsa"));
+        Student s1 = new Student("Aa", 111, List.of("SOA", "SS"));
+        Student s2 = new Student("Bb", 111, List.of("SOA", "SS"));
+        addStudent(s1);
         System.out.println(getStudentByIndex(111));
+        updateStudent(111, s2);
+        System.out.println(getStudentByIndex(111));
+//        System.out.println(getAllStudents());
+//        System.out.println(getStudentByIndex(518));
+//        delStudent(518);
+//        System.out.println(getStudentByIndex(518));
     }
 }

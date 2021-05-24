@@ -1,5 +1,6 @@
-package pl.edu.agh.soa.lab;
+package pl.edu.agh.soa.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
@@ -26,6 +27,17 @@ public class Student {
     }
 
     public Student() {
+    }
+
+    public List<Student> generate(){
+        List<Student> list = new ArrayList<>();
+        list.add(new Student("Adam", 101, List.of("SOA", "SP")));
+        list.add(new Student("Bartek", 102, List.of("SOA", "SP")));
+        list.add(new Student("Cezary", 103, List.of("SOA", "SP")));
+        list.add(new Student("Dominik", 104, List.of("SOA", "SP")));
+        list.add(new Student("Edward", 105, List.of("SOA", "SP")));
+
+        return list;
     }
 
     public void setName(String name) {

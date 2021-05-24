@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>lab2</artifactId>
+        <artifactId>lab1-example</artifactId>
         <groupId>pl.edu.agh.soa.lab</groupId>
         <version>1.0</version>
     </parent>
@@ -28,7 +28,7 @@
     <artifactId>soap-api</artifactId>
     <packaging>ejb</packaging>
 
-    <name>lab1-example: EJB Module</name>
+    <name>lab2: EJB Module</name>
 
     <url>http://wildfly.org</url>
     <licenses>
@@ -41,6 +41,11 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>pl.edu.agh.soa.lab</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <!-- Nowe rzeczy do dodania dla Java11  -->
         <dependency>
@@ -130,12 +135,6 @@
             <artifactId>arquillian-junit-container</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>pl.edu.agh.soa.lab</groupId>
-            <artifactId>lab2-model</artifactId>
-            <scope>provided</scope>
-        </dependency>
       
         <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
@@ -146,12 +145,6 @@
             <groupId>commons-chain</groupId>
             <artifactId>commons-chain</artifactId>
             <version>1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>pl.edu.agh.soa.lab</groupId>
-            <artifactId>lab2-model</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
         </dependency>
 
     </dependencies>
