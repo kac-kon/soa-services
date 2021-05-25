@@ -7,10 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="rest-api" />
+        <module name="rest-connector" />
+        <module name="soap-connector2" />
         <module name="lab1-example-ear" />
         <module name="soap-connector" />
         <module name="soap-api" />
-        <module name="rest-connector" />
         <module name="model" />
       </profile>
     </annotationProcessing>

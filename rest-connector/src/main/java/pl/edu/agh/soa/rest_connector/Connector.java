@@ -116,7 +116,6 @@ public class Connector {
         Student sb = new Student("Bond", 518, List.of("sdsa"));
         Student s1 = new Student("Aa", 111, List.of("SOA", "SS"));
         Student s2 = new Student("Bb", 111, List.of("SOA", "SS"));
-        connector.delStudent(111);
         connector.delStudent(101);
         connector.addStudent(s1);
         System.out.println(connector.getStudentByIndex(111));

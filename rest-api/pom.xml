@@ -124,6 +124,7 @@
                <failOnMissingWebXml>false</failOnMissingWebXml>
             </configuration>
          </plugin>
+
          <plugin>
             <groupId>com.googlecode.maven-download-plugin</groupId>
             <artifactId>download-maven-plugin</artifactId>
@@ -168,6 +169,7 @@
          <plugin>
             <groupId>com.google.code.maven-replacer-plugin</groupId>
             <artifactId>replacer</artifactId>
+            <version>1.5.3</version>
             <executions>
                <execution>
                   <id>replace-swagger-json-location</id>
@@ -178,11 +180,11 @@
                </execution>
             </executions>
             <configuration>
-               <file>${project.build.directory}/rest-api/docs/index.html</file>
+               <file>${project.build.directory}/${project.artifactId}/docs/index.html</file>
                <replacements>
                   <replacement>
                      <token>https://petstore.swagger.io/v2/swagger.json</token>
-                     <value>/rest-api/api/swagger.json</value>
+                     <value>/${project.artifactId}/api/swagger.json</value>
                   </replacement>
                </replacements>
             </configuration>
