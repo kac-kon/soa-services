@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import io.swagger.annotations.*;
+import pl.edu.agh.soa.auth.JWTNeeded;
 import pl.edu.agh.soa.model.Student;
 
 @Path("/StudentData/")
@@ -53,6 +54,7 @@ public class StudentData {
     @Path("/")
     @Produces("application/json")
     @Consumes("application/json")
+    @JWTNeeded
     @ApiOperation("Adds student")
     @ApiResponses({
             @ApiResponse(code = 201, message = "Student added"),
@@ -73,6 +75,7 @@ public class StudentData {
     @Path("/{index}")
     @Produces("application/json")
     @Consumes("application/json")
+    @JWTNeeded
     @ApiOperation("Updates student's info by given index")
     @ApiResponses({
             @ApiResponse(code = 202, message = "Student updated"),
@@ -96,6 +99,7 @@ public class StudentData {
 
     @DELETE
     @Path("/{index}")
+    @JWTNeeded
     @ApiOperation("Deletes student with given index")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Student deleted"),

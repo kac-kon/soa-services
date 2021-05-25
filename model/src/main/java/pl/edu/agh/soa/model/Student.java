@@ -64,9 +64,9 @@ public class Student {
         return this.getName() +
                 "\n" +
                 this.getIndex() +
-                "\n[" +
+                "\n" +
                 this.getSubjects() +
-                "]\n";
+                "\n";
     }
 
 

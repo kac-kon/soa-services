@@ -2,7 +2,6 @@ package pl.edu.agh.soa.rest_connector;
 
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import pl.edu.agh.soa.model.Student;
 
@@ -10,11 +9,11 @@ import javax.swing.*;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.*;
 import java.awt.*;
-import java.util.Collections;
 import java.util.List;
 
 public class Connector {
-    private static ResteasyClient client = new ResteasyClientBuilder().build();
+    private static Client cl = new Client("123", "123");
+    private static ResteasyClient client = cl.getClient();
     private static String url = "http://localhost:8080/rest-api/StudentData/";
 
     private static List<Student> getAllStudents(){
@@ -49,7 +48,10 @@ public class Connector {
 
     private static void addStudent(Student student){
         ResteasyWebTarget target = client.target(url);
-        Response response = target.request().post(Entity.entity(student, "application/json"));
+        Response response = target
+                .request()
+                .header("Authorization", cl.getToken())
+                .post(Entity.entity(student, "application/json"));
         if (response.getStatus() != 201) {
         System.out.println(response.getStatus());
         }
@@ -57,7 +59,10 @@ public class Connector {
 
     private static void delStudent(Integer index){
         ResteasyWebTarget target = client.target(url + "/" + index);
-        Response response = target.request().delete();
+        Response response = target
+                .request()
+                .header("Authorization", cl.getToken())
+                .delete();
         if (response.getStatus() != 200) {
             System.out.println(response.getStatus());
         }
@@ -65,7 +70,10 @@ public class Connector {
 
     private static void updateStudent(Integer index, Student student){
         ResteasyWebTarget target = client.target(url + "/" + index);
-        Response response = target.request().put(Entity.entity(student, "application/json"));
+        Response response = target
+                .request()
+                .header("Authorization", cl.getToken())
+                .put(Entity.entity(student, "application/json"));
         if (response.getStatus() != 202) {
             System.out.println(response.getStatus());
         }
@@ -94,6 +102,7 @@ public class Connector {
 
 
     public static void main(String[] args){
+//        cl.authorize();
 //        List<Student> list = getAllStudents();
 //        Student st = getStudentByIndex(123);
 //        Student s = new Student("111", 111, Collections.singletonList("sdsa"));
@@ -110,8 +119,8 @@ public class Connector {
         addStudent(s1);
         System.out.println(getStudentByIndex(111));
         updateStudent(111, s2);
-        System.out.println(getStudentByIndex(111));
-        displayImage();
+        System.out.println(getStudentByIndex(101));
+//        displayImage();
 //        System.out.println(getAllStudents());
 //        System.out.println(getStudentByIndex(518));
 //        delStudent(518);

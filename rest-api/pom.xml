@@ -83,6 +83,8 @@
          <scope>provided</scope>
       </dependency>
 
+
+
        <!-- JSR-303 (Bean Validation) Implementation -->
        <!-- Provides portable constraints such as @Email -->
        <!-- Hibernate Validator is shipped in JBoss WildFly -->
@@ -103,6 +105,11 @@
          <artifactId>swagger-jaxrs</artifactId>
          <version>1.5.22</version>
       </dependency>
+       <dependency>
+           <groupId>io.jsonwebtoken</groupId>
+           <artifactId>jjwt</artifactId>
+           <version>0.9.1</version>
+       </dependency>
 
    </dependencies>
 
