@@ -12,13 +12,23 @@ import java.awt.*;
 import java.util.List;
 
 public class Connector {
-    private static Client cl = new Client("123", "123");
-    private static ResteasyClient client = cl.getClient();
+    private Client cl;
+    private ResteasyClient client;
     private static String url = "http://localhost:8080/rest-api/StudentData/";
 
-    private static List<Student> getAllStudents(){
+    Connector() {
+        this.cl = new Client();
+        this.client = cl.getClient();
+    }
+
+    Connector(String username, String password){
+        this.cl = new Client(username, password);
+        client = cl.getClient();
+    }
+
+    private List<Student> getAllStudents(){
         List<Student> result = null;
-        ResteasyWebTarget target = client.target(url);
+        ResteasyWebTarget target = this.client.target(url);
         try {
             Response response = target.request().get();
             if (response.getStatus() != 200) {
@@ -33,9 +43,9 @@ public class Connector {
         return result;
     }
 
-    private static Student getStudentByIndex(Integer index){
+    private Student getStudentByIndex(Integer index){
         Student result = null;
-        ResteasyWebTarget target = client.target(url + "/" + index.toString());
+        ResteasyWebTarget target = this.client.target(url + "/" + index.toString());
         Response response = target.request().get();
         if (response.getStatus() != 200) {
             System.out.println(response.getStatus());
@@ -46,42 +56,42 @@ public class Connector {
         return result;
     }
 
-    private static void addStudent(Student student){
-        ResteasyWebTarget target = client.target(url);
+    private void addStudent(Student student){
+        ResteasyWebTarget target = this.client.target(url);
         Response response = target
                 .request()
-                .header("Authorization", cl.getToken())
+                .header("Authorization", this.cl.getToken())
                 .post(Entity.entity(student, "application/json"));
         if (response.getStatus() != 201) {
         System.out.println(response.getStatus());
         }
     }
 
-    private static void delStudent(Integer index){
-        ResteasyWebTarget target = client.target(url + "/" + index);
+    private void delStudent(Integer index){
+        ResteasyWebTarget target = this.client.target(url + "/" + index);
         Response response = target
                 .request()
-                .header("Authorization", cl.getToken())
+                .header("Authorization", this.cl.getToken())
                 .delete();
         if (response.getStatus() != 200) {
             System.out.println(response.getStatus());
         }
     }
 
-    private static void updateStudent(Integer index, Student student){
-        ResteasyWebTarget target = client.target(url + "/" + index);
+    private void updateStudent(Integer index, Student student){
+        ResteasyWebTarget target = this.client.target(url + "/" + index);
         Response response = target
                 .request()
-                .header("Authorization", cl.getToken())
+                .header("Authorization", this.cl.getToken())
                 .put(Entity.entity(student, "application/json"));
         if (response.getStatus() != 202) {
             System.out.println(response.getStatus());
         }
     }
 
-    private static void displayImage() {
+    private void displayImage() {
         byte[] result = null;
-        ResteasyWebTarget target = client.target(url + "/image");
+        ResteasyWebTarget target = this.client.target(url + "/image");
         Response response = target.request().get();
         if (response.getStatus() == 200) {
             result = response.readEntity(byte[].class);
@@ -102,28 +112,17 @@ public class Connector {
 
 
     public static void main(String[] args){
-//        cl.authorize();
-//        List<Student> list = getAllStudents();
-//        Student st = getStudentByIndex(123);
-//        Student s = new Student("111", 111, Collections.singletonList("sdsa"));
-//        System.out.println(st);
-//        addStudent(s);
-//        System.out.println(getStudentByIndex(111));
-//        Student s = new Student("111", 111, Collections.singletonList("sdsa"));
-//        addStudent(s);
-//        Student sa = new Student("James", 123, Collections.singletonList("sdsa"));
-//        addStudent(sa);
+        Connector connector = new Connector("123", "123");
         Student sb = new Student("Bond", 518, List.of("sdsa"));
         Student s1 = new Student("Aa", 111, List.of("SOA", "SS"));
         Student s2 = new Student("Bb", 111, List.of("SOA", "SS"));
-        addStudent(s1);
-        System.out.println(getStudentByIndex(111));
-        updateStudent(111, s2);
-        System.out.println(getStudentByIndex(101));
-//        displayImage();
-//        System.out.println(getAllStudents());
-//        System.out.println(getStudentByIndex(518));
-//        delStudent(518);
-//        System.out.println(getStudentByIndex(518));
+        connector.delStudent(111);
+        connector.delStudent(101);
+        connector.addStudent(s1);
+        System.out.println(connector.getStudentByIndex(111));
+        connector.updateStudent(111, s2);
+        System.out.println(connector.getStudentByIndex(111));
+        System.out.println(connector.getAllStudents());
+        connector.displayImage();
     }
 }

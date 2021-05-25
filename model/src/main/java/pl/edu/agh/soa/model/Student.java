@@ -61,12 +61,12 @@ public class Student {
     }
 
     public String toString(){
-        return this.getName() +
+        return "\n" +
+                this.getName() +
                 "\n" +
                 this.getIndex() +
                 "\n" +
-                this.getSubjects() +
-                "\n";
+                this.getSubjects();
     }
 
 
