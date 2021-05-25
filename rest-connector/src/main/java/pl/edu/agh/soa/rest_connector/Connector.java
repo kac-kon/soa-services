@@ -6,8 +6,10 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import pl.edu.agh.soa.model.Student;
 
+import javax.swing.*;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.*;
+import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -69,6 +71,27 @@ public class Connector {
         }
     }
 
+    private static void displayImage() {
+        byte[] result = null;
+        ResteasyWebTarget target = client.target(url + "/image");
+        Response response = target.request().get();
+        if (response.getStatus() == 200) {
+            result = response.readEntity(byte[].class);
+        }
+        response.close();
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(505, 372);
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.BLACK);
+        JLabel label = new JLabel();
+        label.setIcon(new ImageIcon(result));
+        panel.add(label);
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
 
     public static void main(String[] args){
 //        List<Student> list = getAllStudents();
@@ -88,6 +111,7 @@ public class Connector {
         System.out.println(getStudentByIndex(111));
         updateStudent(111, s2);
         System.out.println(getStudentByIndex(111));
+        displayImage();
 //        System.out.println(getAllStudents());
 //        System.out.println(getStudentByIndex(518));
 //        delStudent(518);

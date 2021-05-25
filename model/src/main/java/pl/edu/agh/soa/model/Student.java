@@ -1,8 +1,12 @@
 package pl.edu.agh.soa.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlType(propOrder = {"name", "index", "subjects"})
 public class Student {
     String name;
     Integer index;
@@ -19,6 +23,7 @@ public class Student {
     public List<String> getSubjects() {
         return subjects;
     }
+
 
     public Student(String name, Integer index, List<String> subjects) {
         this.name = name;
@@ -48,6 +53,9 @@ public class Student {
         this.index = index;
     }
 
+
+    @XmlElementWrapper(name = "subjects")
+    @XmlElement(name = "subjects")
     public void setSubjects(List<String> subjects) {
         this.subjects = subjects;
     }
@@ -56,9 +64,9 @@ public class Student {
         return this.getName() +
                 "\n" +
                 this.getIndex() +
-                "\n" +
+                "\n[" +
                 this.getSubjects() +
-                "\n";
+                "]\n";
     }
 
 

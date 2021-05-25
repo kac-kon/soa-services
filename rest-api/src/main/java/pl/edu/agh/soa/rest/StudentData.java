@@ -2,6 +2,8 @@ package pl.edu.agh.soa.rest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import io.swagger.annotations.*;
 import pl.edu.agh.soa.model.Student;
@@ -103,6 +105,28 @@ public class StudentData {
         students.removeIf(x -> index == (x.getIndex()));
 
         return Response.status(Response.Status.OK).build();
+    }
+
+    @GET
+    @Produces("image/png")
+    @Path("/image")
+    @ApiOperation("Returns example image")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Image found"),
+            @ApiResponse(code = 404, message = "Image not found"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+    public Response getImage(){
+        URL res = getClass().getClassLoader().getResource("C:\\Users\\Kacper\\Desktop\\jp2.png");
+        Object result;
+        try {
+            byte[] bytes = new byte[res.openConnection().getContentLength()];
+            res.openStream().read(bytes);
+            result = bytes;
+        } catch (IOException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+        return Response.status(Response.Status.OK).entity(result).build();
     }
 
 }
