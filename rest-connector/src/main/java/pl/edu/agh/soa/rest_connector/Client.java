@@ -8,7 +8,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.*;
 
 public class Client {
-    private static final String url = "http://localhost:8080/rest-api";
+    private static final String url = "http://localhost:8080/rest-api/api";
     private final ResteasyClient resteasyClient;
     private String username = "";
     private String password = "";

@@ -1,6 +1,7 @@
 package pl.edu.agh.soa.rest;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +17,7 @@ public class StudentData {
 
     @GET
     @Path("/{index}")
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation("Returns student with specified index")
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK"),
@@ -35,7 +36,7 @@ public class StudentData {
 
     @GET
     @Path("/")
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation("Returns all students")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Students found"),
@@ -52,8 +53,8 @@ public class StudentData {
 
     @POST
     @Path("/")
-    @Produces("application/json")
-    @Consumes("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @JWTNeeded
     @ApiOperation("Adds student")
     @ApiResponses({
@@ -73,8 +74,8 @@ public class StudentData {
 
     @PUT
     @Path("/{index}")
-    @Produces("application/json")
-    @Consumes("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @JWTNeeded
     @ApiOperation("Updates student's info by given index")
     @ApiResponses({

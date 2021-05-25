@@ -14,7 +14,7 @@ import java.util.List;
 public class Connector {
     private Client cl;
     private ResteasyClient client;
-    private static String url = "http://localhost:8080/rest-api/StudentData/";
+    private static String url = "http://localhost:8080/rest-api/api/StudentData/";
 
     Connector() {
         this.cl = new Client();
